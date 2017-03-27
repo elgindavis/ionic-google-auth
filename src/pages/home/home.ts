@@ -12,7 +12,7 @@ export class HomePage {
   userProfile: any = null;
   zone: NgZone;
   
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private googlePlus: GooglePlus) {
     this.zone = new NgZone({});
     firebase.auth().onAuthStateChanged( user => {
       this.zone.run( () => {
@@ -26,7 +26,7 @@ export class HomePage {
   }
 
   loginUser(): void {
-    GooglePlus.login({
+    this.googlePlus.login({
       'webClientId': '478496039280-qdu8j619ndmt3t8un8a9m7qejhignrsh.apps.googleusercontent.com',
       'offline': true
     }).then( res => {
